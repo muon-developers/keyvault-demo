@@ -3,6 +3,7 @@ trigger:
 
 pr:
 - master
+- devbranch
 
 variables:
  # Values retrieved from Azure Key Vault secrets can not be shown or printed using e.g. "echo" to keep them save.
