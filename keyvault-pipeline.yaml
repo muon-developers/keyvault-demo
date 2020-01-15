@@ -1,0 +1,54 @@
+
+trigger:
+- master
+
+variables:
+ # Values retrieved from Azure Key Vault secrets can not be shown or printed using e.g. "echo" to keep them save.
+ # In our case we just post them to postb.in to display the versioned values. 
+ postpath: https://postb.in/1579088998289-1030892524868 
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+
+# Get specific version (newer) of secret
+- task: AzureKeyVault@1
+  inputs:
+    azureSubscription: 'dmx-az'
+    KeyVaultName: 'dmxkeyvault1'
+    SecretsFilter: 'mycolorsecret/83f58626aa3941e8b1b7db81f6c4b1db'
+  displayName: 'Get versioned secret - new'
+
+- script: |      
+    wget $(postpath)?v1={"val":$(mycolorsecret/83f58626aa3941e8b1b7db81f6c4b1db)-newversion} 
+  displayName: 'Post new color'
+
+# get specific (old) version of secret
+- task: AzureKeyVault@1
+  inputs:
+    azureSubscription: 'dmx-az'
+    KeyVaultName: 'dmxkeyvault1'
+    SecretsFilter: 'mycolorsecret/9865f1c2c88e4e91877489a1d1060f15'
+  displayName: 'Get versioned secret - older'
+
+- script: |      
+    wget $(postpath)?v1={"val":$(mycolorsecret/9865f1c2c88e4e91877489a1d1060f15)-oldversion} 
+  displayName: 'Post older color'
+
+# get latest secret
+- task: AzureKeyVault@1
+  inputs:
+    azureSubscription: 'dmx-az'
+    KeyVaultName: 'dmxkeyvault1'
+    SecretsFilter: 'mycolorsecret'
+  displayName: 'Get versioned secret - latest'
+
+- script: |      
+    wget $(postpath)?v1={"val":$(mycolorsecret)-latestversion} 
+  displayName: 'Post latest color'
+  
+# Try to print a value retrieved from kv - it will be obscured (***) before printing.
+- script: |   
+    echo $(mycolorsecret)
+  displayName: 'Display secrets from var'
