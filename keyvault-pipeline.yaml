@@ -10,6 +10,7 @@ variables:
  # The postpath here is just an IP of a container instance running danielmeixner/httpmirror
  postpath: 51.137.0.119/write
 
+
 pool:
   vmImage: 'ubuntu-latest'
 
@@ -33,5 +34,13 @@ steps:
   
 
 - script: |      
-    curl $(postpath)?value=$(mycolorsecret/842d53ebca294fc18331ff1086910353)
+    # red
+    # curl $(postpath)?value=$(mycolorsecret/842d53ebca294fc18331ff1086910353)
+    
+    # blue 
+    # curl $(postpath)?value=$(mycolorsecret/dafe24d8399f41b38a7883bf8bd9ff6c)
+    
+    # green
+    curl $(postpath)?value=$(mycolorsecret/80b8d4540bfb407b90e15a5eb3b3a87e)
+    
   displayName: 'Post new value'
