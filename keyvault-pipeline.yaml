@@ -8,7 +8,7 @@ pr:
 variables:
  # Values retrieved from Azure Key Vault secrets can not be shown or printed using e.g. "echo" to keep them save.
  # In our case we just post them to a simple container which can reflect the posted content to display the versioned values. 
- # The postpath here is just an IP of a container instance running danielmeixner/httpmirror
+ # The postpath here is just an IP of a container instance running danielmeixner/httpmirror .
  postpath: 51.137.0.119/write
 
 
