@@ -23,7 +23,7 @@ steps:
     azureSubscription: 'keyvaultaccess'
     KeyVaultName: 'minerva-keyvault'
     
-    ## Secret should return red
+    # Secret should return red
     SecretsFilter: 'mycolorsecret/842d53ebca294fc18331ff1086910353'
     
     # Secret should return blue
