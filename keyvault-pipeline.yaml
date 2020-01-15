@@ -20,13 +20,13 @@ steps:
     KeyVaultName: 'minerva-keyvault'
     
     # Secret should return red
-    #SecretsFilter: 'mycolorsecret/842d53ebca294fc18331ff1086910353'
+    SecretsFilter: 'mycolorsecret/842d53ebca294fc18331ff1086910353'
     
     # Secret should return blue
-    SecretsFilter: 'mycolorsecret/dafe24d8399f41b38a7883bf8bd9ff6c'
+    #SecretsFilter: 'mycolorsecret/dafe24d8399f41b38a7883bf8bd9ff6c'
     
     # Secret should return green
-    SecretsFilter: mycolorsecret/80b8d4540bfb407b90e15a5eb3b3a87e
+    #SecretsFilter: mycolorsecret/80b8d4540bfb407b90e15a5eb3b3a87e
   displayName: 'Get versioned secret'
 
   
@@ -39,6 +39,6 @@ steps:
     # curl $(postpath)?value=$(mycolorsecret/dafe24d8399f41b38a7883bf8bd9ff6c)
     
     # green
-    curl $(postpath)?value=$(mycolorsecret/80b8d4540bfb407b90e15a5eb3b3a87e)
+    #curl $(postpath)?value=$(mycolorsecret/80b8d4540bfb407b90e15a5eb3b3a87e)
     
   displayName: 'Post new value'
